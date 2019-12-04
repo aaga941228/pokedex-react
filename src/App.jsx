@@ -8,10 +8,10 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <AppContainer />
         </Route>
-        <Route path="/:id">
+        <Route exact path="/:id">
           <PokemonDetails />
         </Route>
       </Switch>
