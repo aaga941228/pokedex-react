@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PokemonView from "./PokemonView";
 import emptyPokemon from "../utils/EmptyPokemon";
-import getOnePokemon from "../utils/GetOnePokemon";
+import getOnePokemoByUrl from "../utils/GetOnePokemonByUrl";
 import getEvolutionChain from "../utils/GetEvolutionChain";
 
 const PokemonDetails = () => {
@@ -12,7 +12,8 @@ const PokemonDetails = () => {
 
   useEffect(() => {
     (async () => {
-      const pokemonInfo = await getOnePokemon(id);
+      const URI = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
+      const pokemonInfo = await getOnePokemoByUrl(URI);
       setPokemon(pokemonInfo);
       const evolutions = await getEvolutionChain(id);
       setEvolutionChain(evolutions);

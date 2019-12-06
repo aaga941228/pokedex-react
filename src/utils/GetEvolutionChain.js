@@ -8,8 +8,7 @@ const getEvolutionChain = async id => {
   const secondEvolution = evolutions.data.chain.evolves_to[0].species;
   const thirdEvolution =
     evolutions.data.chain.evolves_to[0].evolves_to[0].species;
-  const evolutionChain = [firstEvolution, secondEvolution, thirdEvolution];
-  return evolutionChain;
+  return [firstEvolution, secondEvolution, thirdEvolution];
 };
 
 export default getEvolutionChain;

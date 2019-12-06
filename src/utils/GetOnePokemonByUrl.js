@@ -1,9 +1,7 @@
 import axios from "axios";
 
-const getOnePokemon = async id => {
-  const pokemon = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon-species/${id}`
-  );
+const getOnePokemonByUrl = async url => {
+  const pokemon = await axios.get(url);
   const {
     name,
     types,
@@ -13,7 +11,6 @@ const getOnePokemon = async id => {
     names
   } = pokemon.data;
   return {
-    id,
     name,
     types,
     evolution_chain,
@@ -23,4 +20,4 @@ const getOnePokemon = async id => {
   };
 };
 
-export default getOnePokemon;
+export default getOnePokemonByUrl;

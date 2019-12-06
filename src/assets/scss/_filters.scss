@@ -1,0 +1,82 @@
+@use 'colors';
+
+.normal {
+  background-color: colors.$color-normal;
+  color: colors.$color-white;
+}
+
+.fighting {
+  background-color: colors.$color-fighting;
+}
+
+.flying {
+  background-color: colors.$color-flying;
+}
+
+.poison {
+  background-color: colors.$color-poison;
+}
+
+.ground {
+  background-color: colors.$color-ground;
+}
+
+.rock {
+  background-color: colors.$color-rock;
+}
+
+.bug {
+  background-color: colors.$color-bug;
+}
+
+.ghost {
+  background-color: colors.$color-ghost;
+}
+
+.steel {
+  background-color: colors.$color-steel;
+}
+
+.fire {
+  background-color: colors.$color-fire;
+}
+
+.water {
+  background-color: colors.$color-water;
+}
+
+.grass {
+  background-color: colors.$color-grass;
+}
+
+.electric {
+  background-color: colors.$color-electric;
+}
+
+.psychich {
+  background-color: colors.$color-psychic;
+}
+
+.ice {
+  background-color: colors.$color-ice;
+}
+
+.dragon {
+  background-color: colors.$color-dragon;
+}
+
+.dark {
+  background-color: colors.$color-dark;
+}
+
+.fairy {
+  background-color: colors.$color-fairy;
+}
+
+.unknow {
+  background-color: colors.$color-unknow;
+}
+
+.shadow {
+  background-color: colors.$color-shadow;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 
 const PokemonDescription = props => {
-  console.log("props: ", props);
+  // console.log("props: ", props);
   const description = `
     habitat: ${props.pokemon.habitat.name},
     original state: unknow,

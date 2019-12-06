@@ -4,7 +4,10 @@ import PokemonImage from "./PokemonImage";
 
 const PokemonCard = props => {
   return (
-    <div className="col-10 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2 card bg-dark">
+    <div
+      id={props.pokemon.name}
+      className="col-10 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2 mx-auto card bg-dark"
+    >
       <PokemonImage id={props.id} />
       <div className="card-body d-flex justify-content-around align-items-center">
         <h5 className="card-text d-inline-block">

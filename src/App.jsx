@@ -4,6 +4,7 @@ import PokemonDetails from "./components/PokemonDetails";
 import Header from "./components/Header";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/styles/styles.css";
 
 function App() {
   return (
