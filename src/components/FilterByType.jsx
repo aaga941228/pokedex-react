@@ -5,10 +5,10 @@ const FilterByType = props => {
 
   const typesList = types.map((type, index) => (
     <button
-      key={index}
       className={`btn btn-outline badge badge-pill d-inline ${type.name}`}
       onClick={props.filter}
       data-name={type.name}
+      key={index}
     >
       {type.name}
     </button>

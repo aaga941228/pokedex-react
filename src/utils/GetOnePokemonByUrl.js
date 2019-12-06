@@ -4,6 +4,7 @@ const getOnePokemonByUrl = async url => {
   const pokemon = await axios.get(url);
   const {
     name,
+    id,
     types,
     evolution_chain,
     evolves_from_species,
@@ -12,6 +13,7 @@ const getOnePokemonByUrl = async url => {
   } = pokemon.data;
   return {
     name,
+    id,
     types,
     evolution_chain,
     evolves_from_species,

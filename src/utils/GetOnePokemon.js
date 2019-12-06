@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const getOnePokemon = async id => {
+const getOnePokemon = async idx => {
   const pokemon = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon-species/${id}`
+    `https://pokeapi.co/api/v2/pokemon-species/${idx}`
   );
   const {
+    id,
     name,
     types,
     evolution_chain,
