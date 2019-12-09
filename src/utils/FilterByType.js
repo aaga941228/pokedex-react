@@ -1,7 +1,7 @@
-import getOneType from "../utils/GetOneType";
+import fetchService from "../FetchService";
 
-const getListOfPokemonsByType = async typeName => {
-  const listOfPokemonsFetch = await getOneType(typeName);
+const filterByType = async typeName => {
+  const listOfPokemonsFetch = await fetchService.getOneType(typeName);
   const listOfPokemons = listOfPokemonsFetch.map(pokemon => {
     const { name } = pokemon.pokemon;
     const { url } = pokemon.pokemon;
@@ -15,4 +15,4 @@ const getListOfPokemonsByType = async typeName => {
   return listOfPokemons;
 };
 
-export default getListOfPokemonsByType;
+export default filterByType;

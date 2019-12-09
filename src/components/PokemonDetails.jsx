@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PokemonView from "./PokemonView";
 import emptyPokemon from "../utils/EmptyPokemon";
-import getOnePokemon from "../utils/GetOnePokemon";
-import getEvolutionChain from "../utils/GetEvolutionChain";
+import fetchService from "../FetchService";
 
 const PokemonDetails = () => {
   const { id } = useParams();
@@ -12,10 +11,10 @@ const PokemonDetails = () => {
 
   useEffect(() => {
     (async () => {
-      const pokemonInfo = await getOnePokemon(id);
+      const pokemonInfo = await fetchService.getOnePokemon(id);
       setPokemon(pokemonInfo);
       const evolutioChainUrl = pokemonInfo.evolution_chain.url;
-      const evolutions = await getEvolutionChain(evolutioChainUrl);
+      const evolutions = await fetchService.getEvolutionChain(evolutioChainUrl);
       setEvolutionChain(evolutions);
     })();
   }, [id]);

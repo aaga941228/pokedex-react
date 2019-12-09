@@ -10,7 +10,7 @@ const FilterByType = props => {
       data-name={type.name}
       key={index}
     >
-      {type.name}
+      <h5>{type.name}</h5>
     </button>
   ));
 

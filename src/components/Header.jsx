@@ -4,19 +4,11 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="container">
-      <nav className="navbar d-flex flex-column">
-        <div className="row">
-          <Link to="/" className="col-8 mx-auto">
-            <img className="img-fluid" src={Logo} alt="pokedex" />
-          </Link>
-        </div>
-        <div className="row">
-          <div className="col-12 mx-auto input-group">
-            <input className="form-control" type="search" />
-            <button className="btn btn-outline-dark">Busqueda</button>
-          </div>
-        </div>
+    <div className="bg-dark p-0 m-0">
+      <nav className="navbar">
+        <Link to="/" className="col-8 mx-auto">
+          <img className="img-fluid pointer" src={Logo} alt="pokedex" />
+        </Link>
       </nav>
     </div>
   );
