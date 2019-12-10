@@ -6,12 +6,14 @@ const PokemonDescription = props => {
     ${props.pokemon.name}, this pokemon lives in ${props.pokemon.habitat.name}
   `;
 
-  const PokemonChainImages = props.evolutionChain[0] && (
+  let PokemonChainImages = props.evolutionChain[0] && (
     <div>
       <PokemonImageMini id={props.evolutionChain[0].id} />
-      <PokemonImageMini id={props.evolutionChain[1].id} />
+      {props.evolutionChain[1] && (
+        <PokemonImageMini id={props.evolutionChain[1].id} />
+      )}
       {props.evolutionChain[2] && (
-        <PokemonImageMini id={props.evolutionChain[2].id} />
+        <PokemonImageMini id={props.evolutionChain[1].id} />
       )}
     </div>
   );

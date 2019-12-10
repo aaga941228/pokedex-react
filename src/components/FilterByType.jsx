@@ -4,14 +4,15 @@ const FilterByType = props => {
   const { types } = props;
 
   const typesList = types.map((type, index) => (
-    <button
-      className={`btn btn-outline badge badge-pill d-inline ${type.name}`}
-      onClick={props.filter}
-      data-name={type.name}
-      key={index}
-    >
-      <h5>{type.name}</h5>
-    </button>
+    <h3 className="d-inline-block" key={index}>
+      <button
+        className={`btn btn-outline badge badge-pill d-inline ${type.name}`}
+        onClick={props.filter}
+        id={type.name}
+      >
+        {type.name}
+      </button>
+    </h3>
   ));
 
   return <div className="col">{typesList}</div>;

@@ -105,6 +105,10 @@ const fetchService = {
       const url1 = firstEvolution.url;
       const id1 = url1.substring(42, 45).replace(/\//, "");
 
+      if (evolutions.data.chain.evolves_to[0] === undefined) {
+        return [{ name: name1, url: url1, id: id1 }];
+      }
+
       const secondEvolution = evolutions.data.chain.evolves_to[0].species;
       const name2 = secondEvolution.name;
       const url2 = secondEvolution.url;
