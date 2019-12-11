@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import PokedexHome from "./components/PokedexHome";
 import PokemonDetails from "./components/PokemonDetails";
 import Header from "./components/Header";
@@ -17,8 +17,8 @@ function App() {
   useEffect(() => {
     (async () => {
       const pokemonsList = await fetchService.getAllPokemons();
-      setPokemons(pokemonsList);
       setTypes(typesList);
+      setPokemons(pokemonsList);
     })();
   }, []);
 
@@ -33,12 +33,17 @@ function App() {
   };
 
   const handleChangeInputName = e => {
-    filterByName(e.target.value, pokemons);
+    const { value } = e.target;
+    const pokemonsListFilter = filterByName(value, pokemons);
+    if (!!value) {
+      handleClickfilterReset();
+    }
+    setPokemons(pokemonsListFilter);
   };
 
   return (
     <Router>
-      <Header filterReset={handleClickfilterReset} />
+      <Header handleClickfilterReset={handleClickfilterReset} />
       <Switch>
         <Route exact path="/">
           <PokedexHome
@@ -46,7 +51,6 @@ function App() {
             types={types}
             handleClickFilter={handleClickFilter}
             handleChangeInputName={handleChangeInputName}
-            handleClickfilterReset={handleClickfilterReset}
           />
         </Route>
         <Route exact path="/:id">

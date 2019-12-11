@@ -11,7 +11,7 @@ const Header = props => {
             className="img-fluid pointer"
             src={LogoPokemon}
             alt="pokedex"
-            onClick={props.filterReset}
+            onClick={props.handleClickfilterReset}
           />
         </Link>
       </nav>
