@@ -1,12 +1,6 @@
-const previousPokemon = (pokemons, id) => {
-  const pokemonsList = pokemons.filter(pokemon => pokemon.display !== "none");
-  const pokemonIndex = pokemonsList.findIndex(pokemon => pokemon.id === id);
-  const previousIndex = pokemonIndex - 1;
-  if (pokemons[previousIndex] === undefined) {
-    return id;
-  } else {
-    return pokemons[previousIndex].id;
-  }
+const getPreviousPokemon = (pokemons, id) => {
+  const pokemonIndex = pokemons.findIndex(pokemon => pokemon.id === id);
+  return pokemonIndex > 0 ? pokemons[pokemonIndex - 1].id : undefined;
 };
 
-export default previousPokemon;
+export default getPreviousPokemon;

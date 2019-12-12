@@ -1,4 +1,29 @@
-const types = [
+export const pokemonTyes = {
+  NORMAL: "normal",
+  FIGHTING: "fighting",
+  FLYING: "flying",
+  POISON: "poison",
+  GROUND: "ground",
+  ROCK: "rock",
+  BUG: "bug",
+  GHOST: "ghost",
+  STEEL: "steel",
+  FIRE: "fire",
+  WATER: "water",
+  GRASS: "grass",
+  ELECTRIC: "electric",
+  PSYCHIC: "psychic",
+  ICE: "ice",
+  DRAGON: "dragon",
+  DARK: "dark",
+  FAIRY: "fairy"
+};
+
+export const validTypes = pokemonTyes.filter(({ name }) =>
+  Object.values(pokemonTyes).includes(name)
+);
+
+const typesList = [
   {
     name: "normal",
     url: "https://pokeapi.co/api/v2/type/1/"
@@ -73,4 +98,4 @@ const types = [
   }
 ];
 
-export default types;
+export default typesList;

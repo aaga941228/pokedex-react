@@ -10,9 +10,12 @@ const PokemonCard = props => {
     >
       <Link to={`/${props.pokemon.id}`} params={{ props }}>
         <PokemonImage id={props.pokemon.id} />
-        <div className="card-body d-flex justify-content-around align-items-center">
-          <h5 className="card-text d-inline-block">{props.pokemon.name}</h5>
-          <h5 className="text-primary">#{props.pokemon.id}</h5>
+        <div className="card-body">
+          <p className="card-text">
+            #{props.pokemon.id}
+            <br />
+            {props.pokemon.name}
+          </p>
         </div>
       </Link>
     </div>
