@@ -40,8 +40,7 @@ const fetchService = {
         evolution_chain,
         evolves_from_species,
         habitat,
-        names,
-        display: "flex"
+        names
       };
     } catch (e) {
       console.log(e);
@@ -51,9 +50,10 @@ const fetchService = {
   getAllTypes: async () => {
     try {
       const response = await axios.get(
-        "https://pokeapi.co/api/v2/type/?limit=20"
+        "https://pokeapi.co/api/v2/type/?limit=18"
       );
-      return response.data.results;
+      const { results } = response.data;
+      return results;
     } catch (e) {
       console.log(e);
     }
@@ -89,8 +89,7 @@ const fetchService = {
         evolution_chain,
         evolves_from_species,
         habitat,
-        names,
-        display: "flex"
+        names
       };
     } catch (e) {
       console.log(e);

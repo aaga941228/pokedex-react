@@ -1,3 +1,13 @@
+html,
+body,
+pre,
+code,
+kbd,
+samp {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12px;
+}
+
 .normal {
   background-color: #ada2a2;
   color: #fff;
@@ -71,16 +81,36 @@
   background-color: #d637bb;
 }
 
-.unknow {
-  background-color: #adadad;
+.fs-1-25 {
+  font-size: 1.25rem;
 }
 
-.shadow {
-  background-color: #9454a3;
+.fs-1-5 {
+  font-size: 1.5rem;
 }
 
-.pointer {
-  cursor: pointer;
+.fs-1-75 {
+  font-size: 1.75rem;
+}
+
+.fs-2 {
+  font-size: 2rem;
+}
+
+.fs-2-25 {
+  font-size: 2.25rem;
+}
+
+.fs-2-5 {
+  font-size: 2.5rem;
+}
+
+.fs-2-75 {
+  font-size: 2.75rem;
+}
+
+.fs-2-75 {
+  font-size: 3rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

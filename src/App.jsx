@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import PokedexHome from "./components/PokedexHome";
 import PokemonDetails from "./components/PokemonDetails";
 import Header from "./components/Header";
-import filterByType from "./utils/FilterByType";
-import filterByName from "./utils/FilterByName";
-import fetchService from "./FetchService";
-import typesList from "./utils/Types";
+import filterByType from "./utils/filterByType";
+import filterByName from "./utils/filterByName";
+import fetchService from "./fetchService";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/styles.css";
 
 function App() {
@@ -15,12 +13,19 @@ function App() {
   const [types, setTypes] = useState([]);
 
   useEffect(() => {
-    (async () => {
-      const pokemonsList = await fetchService.getAllPokemons();
-      setTypes(typesList);
-      setPokemons(pokemonsList);
-    })();
+    fetchPokemons();
+    fetchTypes();
   }, []);
+
+  const fetchPokemons = async () => {
+    const pokemonsList = await fetchService.getAllPokemons();
+    setPokemons(pokemonsList);
+  };
+
+  const fetchTypes = async () => {
+    const typesList = await fetchService.getAllTypes();
+    setTypes(typesList);
+  };
 
   const handleClickFilter = async e => {
     const listOfPokemonsByType = await filterByType(e.target.id);
@@ -34,10 +39,10 @@ function App() {
 
   const handleChangeInputName = e => {
     const { value } = e.target;
-    const pokemonsListFilter = filterByName(value, pokemons);
-    if (!!value) {
+    if (!value) {
       handleClickfilterReset();
     }
+    const pokemonsListFilter = filterByName(value, pokemons);
     setPokemons(pokemonsListFilter);
   };
 

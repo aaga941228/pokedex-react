@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import PokemonView from "./PokemonView";
-import emptyPokemon from "../utils/EmptyPokemon";
-import previousPokemon from "../utils/PreviousPokemon";
-import nextPokemon from "../utils/NextPokemon";
-import fetchService from "../FetchService";
+import emptyPokemon from "../utils/emptyPokemon";
+import getPreviousPokemon from "../utils/previousPokemon";
+import getNextPokemon from "../utils/nextPokemon";
+import fetchService from "../fetchService";
 import { Link } from "react-router-dom";
 
 const PokemonDetails = props => {
   const [pokemon, setPokemon] = useState(emptyPokemon());
   const [evolutionChain, setEvolutionChain] = useState([]);
   const { id } = useParams();
-  const { pokemons } = props;
+  const { pokemons = [] } = props;
 
   useEffect(() => {
     (async () => {
@@ -23,33 +23,31 @@ const PokemonDetails = props => {
     })();
   }, [id]);
 
+  const previousPokemon = useMemo(() => getPreviousPokemon(pokemons, id), [
+    pokemons,
+    id
+  ]);
+
+  const nextPokemon = useMemo(() => getNextPokemon(pokemons, id), [
+    pokemons,
+    id
+  ]);
+
   return (
-    <div className="container">
-      <div className="row mt-5">
-        <div className="col-6">
-          <Link
-            className="carousel-control-prev"
-            to={`${previousPokemon(pokemons, id)}`}
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Previous</span>
+    <div className="row px-5 pt-5">
+      <div className="col-6">
+        {!!previousPokemon && (
+          <Link className="carousel-control-prev" to={`${previousPokemon}`}>
+            <span>Previous pokemon</span>
           </Link>
-        </div>
-        <div className="col-6">
-          <Link
-            className="carousel-control-next"
-            to={`${nextPokemon(pokemons, id)}`}
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Next</span>
+        )}
+      </div>
+      <div className="col-6">
+        {!!nextPokemon && (
+          <Link className="carousel-control-next" to={`${nextPokemon}`}>
+            <span>Next pokemon</span>
           </Link>
-        </div>
+        )}
       </div>
       <PokemonView pokemon={pokemon} evolutionChain={evolutionChain} />
     </div>
