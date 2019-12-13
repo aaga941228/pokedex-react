@@ -5,12 +5,31 @@ code,
 kbd,
 samp {
   font-family: "Press Start 2P", cursive;
-  font-size: 12px;
+  font-size: 14px;
+  color: #f4f4f4;
+}
+
+.uppercase::first-letter {
+  text-transform: uppercase;
+  font-size: 1.4em;
+}
+
+.shadow:hover {
+  border: 1px solid #bfbfbf;
+  background-color: #f4f4f4;
+  box-shadow: 10px 10px 10px #aaaaaa;
+}
+
+.pixelated {
+  image-rendering: pixelated;
 }
 
 .normal {
   background-color: #ada2a2;
-  color: #fff;
+}
+
+.white {
+  color: #f4f4f4;
 }
 
 .fighting {
@@ -111,6 +130,12 @@ samp {
 
 .fs-2-75 {
   font-size: 3rem;
+}
+
+@media screen and (min-width: 992px) {
+  .fs-lg-1-25 {
+    font-size: 1.25rem;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

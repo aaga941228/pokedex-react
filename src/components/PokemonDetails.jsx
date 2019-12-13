@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PokemonView from "./PokemonView";
+import fetchService from "../fetchService";
 import emptyPokemon from "../utils/emptyPokemon";
 import getPreviousPokemon from "../utils/previousPokemon";
 import getNextPokemon from "../utils/nextPokemon";
-import fetchService from "../fetchService";
-import { Link } from "react-router-dom";
 
 const PokemonDetails = props => {
   const [pokemon, setPokemon] = useState(emptyPokemon());
@@ -34,7 +33,7 @@ const PokemonDetails = props => {
   ]);
 
   return (
-    <div className="row px-5 pt-5">
+    <div className="row px-5 pt-5 px-5">
       <div className="col-6">
         {!!previousPokemon && (
           <Link className="carousel-control-prev" to={`${previousPokemon}`}>
@@ -49,7 +48,9 @@ const PokemonDetails = props => {
           </Link>
         )}
       </div>
-      <PokemonView pokemon={pokemon} evolutionChain={evolutionChain} />
+      {!!pokemon && (
+        <PokemonView pokemon={pokemon} evolutionChain={evolutionChain} />
+      )}
     </div>
   );
 };

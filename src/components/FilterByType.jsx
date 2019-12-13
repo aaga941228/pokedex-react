@@ -5,7 +5,7 @@ const FilterByType = props => {
 
   const typesList = types.map((type, index) => (
     <button
-      className={`btn btn-outline badge badge-pill d-inline fs-1-25 ${type.name}`}
+      className={`btn badge badge-pill d-inline pointer uppercase m-1 fs-lg-1-25 ${type.name}`}
       onClick={props.filter}
       id={type.name}
       key={index}
@@ -14,7 +14,11 @@ const FilterByType = props => {
     </button>
   ));
 
-  return <div className="col">{typesList}</div>;
+  return (
+    <div className="col">
+      <div className="d-flex justify-content-around flex-wrap">{typesList}</div>
+    </div>
+  );
 };
 
 export default FilterByType;

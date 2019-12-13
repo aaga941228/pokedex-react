@@ -6,7 +6,7 @@ const FilterByName = props => {
       <label htmlFor="name">
         <p className="fs-1-25">Search by name</p>
         <input
-          className="form-control w-100 fs-1-25"
+          className="form-control w-100"
           type="search"
           onChange={props.handleChangeInputName}
         />

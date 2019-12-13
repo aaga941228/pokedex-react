@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import throttle from "lodash/throttle";
 import PokedexHome from "./components/PokedexHome";
 import PokemonDetails from "./components/PokemonDetails";
 import Header from "./components/Header";
 import filterByType from "./utils/filterByType";
 import filterByName from "./utils/filterByName";
 import fetchService from "./fetchService";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./assets/styles/styles.css";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [types, setTypes] = useState([]);
-
-  useEffect(() => {
-    fetchPokemons();
-    fetchTypes();
-  }, []);
+  const [filter, setFilter] = useState("");
 
   const fetchPokemons = async () => {
     const pokemonsList = await fetchService.getAllPokemons();
@@ -27,24 +24,30 @@ function App() {
     setTypes(typesList);
   };
 
+  useEffect(() => {
+    fetchPokemons();
+    fetchTypes();
+  }, []);
+
   const handleClickFilter = async e => {
     const listOfPokemonsByType = await filterByType(e.target.id);
     setPokemons(listOfPokemonsByType);
   };
 
-  const handleClickfilterReset = async () => {
-    const pokemonsList = await fetchService.getAllPokemons();
-    setPokemons(pokemonsList);
+  const handleClickfilterReset = () => {
+    setFilter("");
+    fetchPokemons();
   };
 
-  const handleChangeInputName = e => {
+  const handleChangeInputName = throttle(e => {
     const { value } = e.target;
-    if (!value) {
-      handleClickfilterReset();
-    }
-    const pokemonsListFilter = filterByName(value, pokemons);
-    setPokemons(pokemonsListFilter);
-  };
+    setFilter(value || "");
+  }, 1000);
+
+  const filteredPokemons = useMemo(() => filterByName(filter, pokemons), [
+    pokemons,
+    filter
+  ]);
 
   return (
     <Router>
@@ -52,14 +55,14 @@ function App() {
       <Switch>
         <Route exact path="/">
           <PokedexHome
-            pokemons={pokemons}
+            pokemons={filteredPokemons}
             types={types}
             handleClickFilter={handleClickFilter}
             handleChangeInputName={handleChangeInputName}
           />
         </Route>
         <Route exact path="/:id">
-          <PokemonDetails pokemons={pokemons} />
+          <PokemonDetails pokemons={filteredPokemons} />
         </Route>
       </Switch>
     </Router>

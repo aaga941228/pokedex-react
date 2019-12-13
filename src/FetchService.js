@@ -21,26 +21,47 @@ const fetchService = {
 
   getOnePokemon: async idx => {
     try {
-      const pokemon = await axios.get(
+      const pokemonFetch1 = await axios.get(
         `https://pokeapi.co/api/v2/pokemon-species/${idx}`
       );
+
+      const pokemonFetch2 = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${idx}`
+      );
+
       const {
         id,
         name,
-        types,
         evolution_chain,
         evolves_from_species,
         habitat,
         names
-      } = pokemon.data;
+      } = pokemonFetch1.data;
+
+      const {
+        abilities,
+        base_experience,
+        height,
+        sprites,
+        stats,
+        types,
+        weight
+      } = pokemonFetch2.data;
+
       return {
         id,
         name,
-        types,
         evolution_chain,
         evolves_from_species,
         habitat,
-        names
+        names,
+        abilities,
+        base_experience,
+        height,
+        sprites,
+        stats,
+        types,
+        weight
       };
     } catch (e) {
       console.log(e);
@@ -52,7 +73,9 @@ const fetchService = {
       const response = await axios.get(
         "https://pokeapi.co/api/v2/type/?limit=18"
       );
+
       const { results } = response.data;
+
       return results;
     } catch (e) {
       console.log(e);
@@ -64,33 +87,8 @@ const fetchService = {
       const response = await axios.get(
         `https://pokeapi.co/api/v2/type/${typeName}`
       );
-      return response.data.pokemon;
-    } catch (e) {
-      console.log(e);
-    }
-  },
 
-  getOnePokemonByUrl: async url => {
-    try {
-      const pokemon = await axios.get(url);
-      const {
-        id,
-        name,
-        types,
-        evolution_chain,
-        evolves_from_species,
-        habitat,
-        names
-      } = pokemon.data;
-      return {
-        id,
-        name,
-        types,
-        evolution_chain,
-        evolves_from_species,
-        habitat,
-        names
-      };
+      return response.data.pokemon;
     } catch (e) {
       console.log(e);
     }
