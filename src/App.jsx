@@ -48,7 +48,6 @@ function App() {
     pokemons,
     filter
   ]);
-
   return (
     <Router>
       <Header handleClickfilterReset={handleClickfilterReset} />

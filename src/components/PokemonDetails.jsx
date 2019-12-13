@@ -1,10 +1,20 @@
 import React, { useState, useEffect, useMemo } from "react";
+<<<<<<< HEAD
 import { Link, useParams } from "react-router-dom";
 import PokemonView from "./PokemonView";
 import fetchService from "../fetchService";
 import emptyPokemon from "../utils/emptyPokemon";
 import getPreviousPokemon from "../utils/previousPokemon";
 import getNextPokemon from "../utils/nextPokemon";
+=======
+import { useParams } from "react-router-dom";
+import PokemonView from "./PokemonView";
+import emptyPokemon from "../utils/emptyPokemon";
+import getPreviousPokemon from "../utils/previousPokemon";
+import getNextPokemon from "../utils/nextPokemon";
+import fetchService from "../fetchService";
+import { Link } from "react-router-dom";
+>>>>>>> 8d11a3450efc3e189a7d21b15a930ccc2b9a0b1c
 
 const PokemonDetails = props => {
   const [pokemon, setPokemon] = useState(emptyPokemon());
@@ -13,13 +23,15 @@ const PokemonDetails = props => {
   const { pokemons = [] } = props;
 
   useEffect(() => {
-    (async () => {
-      const pokemonInfo = await fetchService.getOnePokemon(id);
-      setPokemon(pokemonInfo);
-      const evolutioChainUrl = pokemonInfo.evolution_chain.url;
-      const evolutions = await fetchService.getEvolutionChain(evolutioChainUrl);
-      setEvolutionChain(evolutions);
-    })();
+    (async () => await getPokemonInfo)();
+  }, []);
+
+  const getPokemonInfo = useMemo(async () => {
+    const pokemonInfo = await fetchService.getOnePokemon(id);
+    setPokemon(pokemonInfo);
+    const evolutioChainUrl = pokemonInfo.evolution_chain.url;
+    const evolutions = await fetchService.getEvolutionChain(evolutioChainUrl);
+    setEvolutionChain(evolutions);
   }, [id]);
 
   const previousPokemon = useMemo(() => getPreviousPokemon(pokemons, id), [

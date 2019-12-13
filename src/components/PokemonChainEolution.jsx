@@ -1,27 +1,24 @@
 import React from "react";
-import PokemonChainEvolutionLink from "./PokemonChainEvolutionLink";
+import PokemonImageMini from "./PokemonImageMini";
 
 const PokemonChainEvolution = props => {
+  let PokemonChainImages = props.evolutionChain[0] && (
+    <div className="row d-flex justify-content-around">
+      <PokemonImageMini id={props.evolutionChain[0].id} />
+      {props.evolutionChain[1] && (
+        <PokemonImageMini id={props.evolutionChain[1].id} />
+      )}
+      {props.evolutionChain[2] && (
+        <PokemonImageMini id={props.evolutionChain[2].id} />
+      )}
+    </div>
+  );
   return (
     <div className="card p-3 bg-transparent">
       <div className="card-title p-3 d-flex justify-content-center">
-        <p className="d-inline-block uppercase">Chain evolution</p>
+        <p className="d-inline-block">Chain evolution</p>
       </div>
-      {props.evolutionChain[0] && (
-        <div className="row d-flex justify-content-around">
-          <PokemonChainEvolutionLink evolutionChain={props.evolutionChain[0]} />
-          {props.evolutionChain[1] && (
-            <PokemonChainEvolutionLink
-              evolutionChain={props.evolutionChain[1]}
-            />
-          )}
-          {props.evolutionChain[2] && (
-            <PokemonChainEvolutionLink
-              evolutionChain={props.evolutionChain[2]}
-            />
-          )}
-        </div>
-      )}
+      {PokemonChainImages}
     </div>
   );
 };

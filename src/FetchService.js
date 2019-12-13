@@ -75,7 +75,6 @@ const fetchService = {
       );
 
       const { results } = response.data;
-
       return results;
     } catch (e) {
       console.log(e);
