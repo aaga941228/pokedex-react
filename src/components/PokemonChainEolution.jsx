@@ -1,6 +1,5 @@
 import React from "react";
-import PokemonImageMini from "./PokemonImageMini";
-import { Link } from "react-router-dom";
+import PokemonChainEvolutionLink from "./PokemonChainEvolutionLink";
 
 const PokemonChainEvolution = props => {
   return (
@@ -10,33 +9,16 @@ const PokemonChainEvolution = props => {
       </div>
       {props.evolutionChain[0] && (
         <div className="row d-flex justify-content-around">
-          <Link to={`/${props.evolutionChain[0].id}`} className="col p-0 m-1">
-            <div className="d-flex justify-content-center">
-              <p className="d-inline-block white uppercase">
-                {props.evolutionChain[0].name}
-              </p>
-            </div>
-            <PokemonImageMini id={props.evolutionChain[0].id} />
-          </Link>
+          <PokemonChainEvolutionLink evolutionChain={props.evolutionChain[0]} />
           {props.evolutionChain[1] && (
-            <Link to={`/${props.evolutionChain[1].id}`} className="col p-0 m-1">
-              <div className="d-flex justify-content-center">
-                <p className="d-inline-block white uppercase">
-                  {props.evolutionChain[1].name}
-                </p>
-              </div>
-              <PokemonImageMini id={props.evolutionChain[1].id} />
-            </Link>
+            <PokemonChainEvolutionLink
+              evolutionChain={props.evolutionChain[1]}
+            />
           )}
           {props.evolutionChain[2] && (
-            <Link to={`/${props.evolutionChain[2].id}`} className="col p-0 m-1">
-              <div className="d-flex justify-content-center">
-                <p className="d-inline-block white uppercase">
-                  {props.evolutionChain[2].name}
-                </p>
-              </div>
-              <PokemonImageMini id={props.evolutionChain[2].id} />
-            </Link>
+            <PokemonChainEvolutionLink
+              evolutionChain={props.evolutionChain[2]}
+            />
           )}
         </div>
       )}
