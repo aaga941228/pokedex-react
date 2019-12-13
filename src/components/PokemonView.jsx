@@ -1,11 +1,8 @@
 import React from "react";
 import PokemonImage from "./PokemonImage";
 import PokemonChainEvolution from "./PokemonChainEolution";
-<<<<<<< HEAD
 import Types from "./Types";
 import Sprites from "./Sprites";
-=======
->>>>>>> 8d11a3450efc3e189a7d21b15a930ccc2b9a0b1c
 
 const PokemonView = props => {
   const { pokemon } = props;

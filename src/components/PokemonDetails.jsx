@@ -1,20 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react";
-<<<<<<< HEAD
 import { Link, useParams } from "react-router-dom";
 import PokemonView from "./PokemonView";
 import fetchService from "../fetchService";
 import emptyPokemon from "../utils/emptyPokemon";
 import getPreviousPokemon from "../utils/previousPokemon";
 import getNextPokemon from "../utils/nextPokemon";
-=======
-import { useParams } from "react-router-dom";
-import PokemonView from "./PokemonView";
-import emptyPokemon from "../utils/emptyPokemon";
-import getPreviousPokemon from "../utils/previousPokemon";
-import getNextPokemon from "../utils/nextPokemon";
-import fetchService from "../fetchService";
-import { Link } from "react-router-dom";
->>>>>>> 8d11a3450efc3e189a7d21b15a930ccc2b9a0b1c
 
 const PokemonDetails = props => {
   const [pokemon, setPokemon] = useState(emptyPokemon());
