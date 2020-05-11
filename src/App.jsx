@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import throttle from "lodash/throttle";
-import PokedexHome from "./components/PokedexHome";
-import PokemonDetails from "./components/PokemonDetails";
-import Header from "./components/Header";
-import filterByType from "./utils/filterByType";
-import filterByName from "./utils/filterByName";
-import fetchService from "./fetchService";
-import "./assets/styles/styles.css";
+import React, { useState, useEffect, useMemo } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import throttle from 'lodash/throttle';
+import PokedexHome from './components/PokedexHome';
+import PokemonDetails from './components/PokemonDetails';
+import Header from './components/Header';
+import filterByType from './utils/filterByType';
+import filterByName from './utils/filterByName';
+import fetchService from './fetchService';
+import './assets/styles/styles.css';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [types, setTypes] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState('');
 
   const fetchPokemons = async () => {
     const pokemonsList = await fetchService.getAllPokemons();
@@ -35,24 +35,25 @@ function App() {
   };
 
   const handleClickfilterReset = () => {
-    setFilter("");
+    setFilter('');
     fetchPokemons();
   };
 
   const handleChangeInputName = throttle(e => {
     const { value } = e.target;
-    setFilter(value || "");
+    setFilter(value || '');
   }, 1000);
 
   const filteredPokemons = useMemo(() => filterByName(filter, pokemons), [
     pokemons,
     filter
   ]);
+  
   return (
     <Router>
       <Header handleClickfilterReset={handleClickfilterReset} />
       <Switch>
-        <Route exact path="/">
+        <Route exact path='/'>
           <PokedexHome
             pokemons={filteredPokemons}
             types={types}
@@ -60,7 +61,7 @@ function App() {
             handleChangeInputName={handleChangeInputName}
           />
         </Route>
-        <Route exact path="/:id">
+        <Route exact path='/:id'>
           <PokemonDetails pokemons={filteredPokemons} />
         </Route>
       </Switch>
