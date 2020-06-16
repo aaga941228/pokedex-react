@@ -6,17 +6,19 @@ import PokemonDetails from './components/PokemonDetails';
 import Header from './components/Header';
 import filterByType from './utils/filterByType';
 import filterByName from './utils/filterByName';
-import { getAllPokemons, getAllTypes } from './fetchService';
+import { getAllPokemons, getAllTypes } from './pokemonService';
 import './assets/styles/styles.css';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [types, setTypes] = useState([]);
   const [filter, setFilter] = useState('');
+  const [limit, setLimit] = useState(50);
+  const [offset, setOffset] = useState(1)
 
-  const fetchPokemons = async () => {
-    const pokemonsList = await getAllPokemons();
-    setPokemons(pokemonsList);
+  const fetchFiftyPokemons = async () => {
+    const data = await getAllPokemons(limit, offset);
+    setPokemons([...pokemons, ...data]);
   };
 
   const fetchTypes = async () => {
@@ -24,10 +26,15 @@ function App() {
     setTypes(typesList);
   };
 
+  const handleClickMorePokemons = () => {
+    setLimit(limit + 50)
+    setOffset(offset + 50)
+  }
+
   useEffect(() => {
-    fetchPokemons();
+    fetchFiftyPokemons();
     fetchTypes();
-  }, []);
+  }, [limit]);
 
   const handleClickFilter = async e => {
     const listOfPokemonsByType = await filterByType(e.target.id);
@@ -36,7 +43,7 @@ function App() {
 
   const handleClickfilterReset = () => {
     setFilter('');
-    fetchPokemons();
+    fetchFiftyPokemons();
   };
 
   const handleChangeInputName = throttle(e => {
@@ -47,7 +54,7 @@ function App() {
     pokemons,
     filter
   ]);
-  
+
   return (
     <Router>
       <Header handleClickfilterReset={handleClickfilterReset} />
@@ -58,6 +65,7 @@ function App() {
             types={types}
             handleClickFilter={handleClickFilter}
             handleChangeInputName={handleChangeInputName}
+            handleClickMorePokemons={handleClickMorePokemons}
           />
         </Route>
         <Route exact path='/:id'>

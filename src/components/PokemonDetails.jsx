@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import PokemonView from "./PokemonView";
-import { getOnePokemon, getEvolutionChain } from "../fetchService";
+import { getOnePokemon, getEvolutionChain } from "../pokemonService";
 import emptyPokemon from "../utils/emptyPokemon";
 import getPreviousPokemon from "../utils/previousPokemon";
 import getNextPokemon from "../utils/nextPokemon";

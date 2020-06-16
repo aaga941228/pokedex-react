@@ -3,25 +3,26 @@ import PokemonCard from "./PokemonCard";
 import FilterByType from "./FilterByType";
 import FilterByName from "./FilterByName";
 
-const PokedexHome = props => (
+const PokedexHome = ({ handleChangeInputName, types, handleClickFilter, pokemons, handleClickMorePokemons }) => (
   <div className="container mx-auto p-3">
     <div className="row">
       <div className="col-12">
-      <FilterByName handleChangeInputName={props.handleChangeInputName} />
+      <FilterByName handleChangeInputName={handleChangeInputName} />
       </div>
       <div className="col-12">
         <FilterByType
-          types={props.types}
-          filter={props.handleClickFilter}
+          types={types}
+          filter={handleClickFilter}
           className="mb-3 p-3"
         />
       </div>
     </div>
     <div className="row p-2">
-      {props.pokemons.map(pokemon => (
+      {pokemons.map(pokemon => (
         <PokemonCard key={pokemon.id} pokemon={pokemon}/>
       ))}
     </div>
+    <button type="button" className="btn btn-secondary btn-lg btn-block" onClick={handleClickMorePokemons}>More pokemons</button>
   </div>
 );
 
