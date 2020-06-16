@@ -5,17 +5,8 @@ $break-medium: 768px;
 $break-large: 992px;
 $break-extra-large: 1200px;
 
-@media screen and (min-width: $break-small) {
-}
-
-@media screen and (min-width: $break-medium) {
-}
-
 @media screen and (min-width: $break-large) {
   .fs-lg-1-25 {
     font-size: 1.25rem;
   }
-}
-
-@media screen and (min-width: $break-extra-large) {
 }

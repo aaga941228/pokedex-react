@@ -25,3 +25,108 @@ samp {
 .pixelated {
   image-rendering: pixelated;
 }
+
+.go-top-container {
+  position: fixed;
+  bottom: 5rem;
+  right: 1rem;
+  width: 5rem;
+  height: 5rem;
+  z-index: -1;
+
+  .go-top-button {
+    width: 0;
+    height: 0;
+    background-color: lighten($color: #2071b2, $amount: 10);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.5s;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+
+      img {
+        position: absolute;
+        font-size: 1rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        color: #fff;
+        transition: 0.5s;
+      }
+    }
+  }
+
+.show {
+  z-index: 10;
+
+  .go-top-button {
+    animation: popup 0.5s ease-in-out;
+    width: 5rem;
+    height: 5rem;
+    z-index: 11;
+
+    img {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}
+
+footer {
+  margin-bottom: 150px;
+  .social {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 20px;
+    flex-wrap: wrap;
+
+    .container-icon {
+      &:hover a {
+        animation: icono 0.5s ease;
+      }
+    
+      a {
+        display: block;
+        width: 60px;
+        height: 60px;
+        background-color: #000;
+        color: #fff;
+        margin: 20px;
+        text-align: center;
+        border-radius: 100px;
+        transition: 0.5s ease all;
+
+        i {
+          font-size: 20px;
+          line-height: 60px;
+        }
+      }
+
+      .linkedin {
+        background: #0e76a8;
+      }
+
+      .github {
+        background: #000;
+      }
+    }
+  }
+
+  .created-by {
+    p {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}
+
+@keyframes icono {
+  from {
+    transform: rotate3d(0, 0, 0, 0);
+  }
+  to {
+    transform: rotate3d(0, 1, 0, 360deg);
+  }
+}

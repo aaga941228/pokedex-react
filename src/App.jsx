@@ -4,6 +4,7 @@ import throttle from 'lodash/throttle';
 import PokedexHome from './components/PokedexHome';
 import PokemonDetails from './components/PokemonDetails';
 import Header from './components/Header';
+import Footer from './components/Footer'
 import filterByType from './utils/filterByType';
 import filterByName from './utils/filterByName';
 import { getAllPokemons, getAllTypes } from './pokemonService';
@@ -21,6 +22,25 @@ function App() {
     setPokemons([...pokemons, ...data]);
   };
 
+  const scroll = () => {
+    window.onscroll = function () {
+      if (document.documentElement.scrollTop > 100) {
+        document.querySelector(".go-top-container").classList.add("show");
+      } else {
+        document.querySelector(".go-top-container").classList.remove("show");
+      }
+    };
+
+    document
+      .querySelector(".go-top-container")
+      .addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+  }
+
   const fetchTypes = async () => {
     const typesList = await getAllTypes();
     setTypes(typesList);
@@ -30,6 +50,25 @@ function App() {
     setLimit(limit + 50)
     setOffset(offset + 50)
   }
+
+  useEffect(() => {
+    window.onscroll = function () {
+      if (document.documentElement.scrollTop > 100) {
+        document.querySelector(".go-top-container").classList.add("show");
+      } else {
+        document.querySelector(".go-top-container").classList.remove("show");
+      }
+    };
+
+    document
+      .querySelector(".go-top-container")
+      .addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+  }, []);
 
   useEffect(() => {
     fetchFiftyPokemons();
@@ -72,6 +111,7 @@ function App() {
           <PokemonDetails pokemons={filteredPokemons} />
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }

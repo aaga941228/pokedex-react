@@ -24,6 +24,96 @@ samp {
   image-rendering: pixelated;
 }
 
+.go-top-container {
+  position: fixed;
+  bottom: 5rem;
+  right: 1rem;
+  width: 5rem;
+  height: 5rem;
+  z-index: -1;
+}
+.go-top-container .go-top-button {
+  width: 0;
+  height: 0;
+  background-color: #2c8cd9;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.5s;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+.go-top-container .go-top-button img {
+  position: absolute;
+  font-size: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  color: #fff;
+  transition: 0.5s;
+}
+
+.show {
+  z-index: 10;
+}
+.show .go-top-button {
+  animation: popup 0.5s ease-in-out;
+  width: 5rem;
+  height: 5rem;
+  z-index: 11;
+}
+.show .go-top-button img {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+footer {
+  margin-bottom: 150px;
+}
+footer .social {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+footer .social .container-icon:hover a {
+  animation: icono 0.5s ease;
+}
+footer .social .container-icon a {
+  display: block;
+  width: 60px;
+  height: 60px;
+  background-color: #000;
+  color: #fff;
+  margin: 20px;
+  text-align: center;
+  border-radius: 100px;
+  transition: 0.5s ease all;
+}
+footer .social .container-icon a i {
+  font-size: 20px;
+  line-height: 60px;
+}
+footer .social .container-icon .linkedin {
+  background: #0e76a8;
+}
+footer .social .container-icon .github {
+  background: #000;
+}
+footer .created-by p {
+  display: flex;
+  justify-content: space-around;
+}
+
+@keyframes icono {
+  from {
+    transform: rotate3d(0, 0, 0, 0);
+  }
+  to {
+    transform: rotate3d(0, 1, 0, 360deg);
+  }
+}
 .normal {
   background-color: #ada2a2;
 }
@@ -93,7 +183,7 @@ samp {
 }
 
 .dark {
-  background-color: #210707;
+  background-color: #66480c;
 }
 
 .fairy {
