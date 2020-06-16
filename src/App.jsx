@@ -6,7 +6,7 @@ import PokemonDetails from './components/PokemonDetails';
 import Header from './components/Header';
 import filterByType from './utils/filterByType';
 import filterByName from './utils/filterByName';
-import fetchService from './fetchService';
+import { getAllPokemons, getAllTypes } from './fetchService';
 import './assets/styles/styles.css';
 
 function App() {
@@ -15,12 +15,12 @@ function App() {
   const [filter, setFilter] = useState('');
 
   const fetchPokemons = async () => {
-    const pokemonsList = await fetchService.getAllPokemons();
+    const pokemonsList = await getAllPokemons();
     setPokemons(pokemonsList);
   };
 
   const fetchTypes = async () => {
-    const typesList = await fetchService.getAllTypes();
+    const typesList = await getAllTypes();
     setTypes(typesList);
   };
 

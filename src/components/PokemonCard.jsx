@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import PokemonImage from "./PokemonImage";
 
 const PokemonCard = ({ pokemon }) => (
-  <div className="col-6 col-md-4 col-lg-2 p-2 mx-auto">
+  <div className="col-6 col-md-4 col-lg-2 p-3 mx-auto">
     {!!pokemon && (
       <div
-        className="p-1 card bg-secondary pointer shadow"
+        className="p-3 card bg-secondary pointer shadow"
         id={`pokemon-${pokemon.id}`}
       >
         <Link to={`/${pokemon.id}`}>

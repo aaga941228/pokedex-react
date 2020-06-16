@@ -1,17 +1,14 @@
 import React from "react";
 
-const Sprites = props => {
-  const { sprites } = props;
-  const spritesList = (sprites) => {
-    return sprites.map((sprite, index) => (
+const Sprites = ({ sprites, name }) => {
+  const spritesList = sprites =>  sprites.map((sprite, index) => (
       <img
       className="img-fluid col pixelated"
       src={sprite}
-      alt=""
+      alt={name}
       key={index}
     />
-    ))
-  }
+  ))
 
   return (
     <div className="card bg-transparent">
@@ -22,7 +19,7 @@ const Sprites = props => {
           }
         </div>
         <div className="row d-flex">
-        {
+          {
             !!sprites && spritesList([sprites.front_default, sprites.front_shiny])
           }
         </div>

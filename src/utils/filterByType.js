@@ -1,7 +1,7 @@
-import fetchService from "../fetchService";
+import { getOneType } from "../fetchService";
 
 const filterByType = async typeName => {
-  const listOfPokemonsFetch = await fetchService.getOneType(typeName);
+  const listOfPokemonsFetch = await getOneType(typeName);
 
   const listOfPokemons = listOfPokemonsFetch.map(pokemon => {
     const { name, url } = pokemon.pokemon;
