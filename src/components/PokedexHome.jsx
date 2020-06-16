@@ -3,22 +3,26 @@ import PokemonCard from "./PokemonCard";
 import FilterByType from "./FilterByType";
 import FilterByName from "./FilterByName";
 
-const PokedexHome = props => {
-  const pokemonsList = props.pokemons.map((pokemon, index) => (
-    <PokemonCard key={index} pokemon={pokemon} />
-  ));
-
-  return (
-    <div className="container mx-auto p-3">
+const PokedexHome = props => (
+  <div className="container mx-auto p-3">
+    <div className="row">
+      <div className="col-12">
       <FilterByName handleChangeInputName={props.handleChangeInputName} />
-      <FilterByType
-        types={props.types}
-        filter={props.handleClickFilter}
-        className="row mb-3 p-3"
-      />
-      <div className="row mb-3 p-3">{pokemonsList}</div>
+      </div>
+      <div className="col-12">
+        <FilterByType
+          types={props.types}
+          filter={props.handleClickFilter}
+          className="mb-3 p-3"
+        />
+      </div>
     </div>
-  );
-};
+    <div className="row p-2">
+      {props.pokemons.map(pokemon => (
+        <PokemonCard key={pokemon.id} pokemon={pokemon}/>
+      ))}
+    </div>
+  </div>
+);
 
 export default PokedexHome;

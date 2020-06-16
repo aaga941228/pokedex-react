@@ -40,8 +40,7 @@ function App() {
   };
 
   const handleChangeInputName = throttle(e => {
-    const { value } = e.target;
-    setFilter(value || '');
+    setFilter(e.target.value || '');
   }, 1000);
 
   const filteredPokemons = useMemo(() => filterByName(filter, pokemons), [

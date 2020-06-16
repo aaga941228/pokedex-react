@@ -4,7 +4,7 @@ const fetchService = {
   getAllPokemons: async () => {
     try {
       const response = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon-species/?limit=804"
+        "https://pokeapi.co/api/v2/pokemon-species/?limit=151"
       );
       const list = response.data.results.map(res => {
         return {
