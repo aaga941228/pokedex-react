@@ -3,7 +3,7 @@ import FilterByType from "./FilterByType";
 import GoTopButton from './GoTopButton';
 import PokemonCard from "./PokemonCard";
 
-const PokedexHome = ({ types, handleClickFilter, pokemons, handleClickMorePokemons }) => (
+const PokedexHome = ({ types, handleClickFilter, pokemons }) => (
   <div className="container-fluid">
     <div className="container mx-auto p-3">
       <div className="row">
@@ -20,7 +20,6 @@ const PokedexHome = ({ types, handleClickFilter, pokemons, handleClickMorePokemo
           <PokemonCard key={index} pokemon={pokemon} />
         ))}
       </div>
-      <button type="button" className="btn btn-secondary btn-lg btn-block p-3" onClick={handleClickMorePokemons}>More pokemons</button>
     </div>
     <GoTopButton />
   </div>

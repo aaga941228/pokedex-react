@@ -27,10 +27,6 @@ function App() {
     setTypes(typesList);
   };
 
-  const handleClickMorePokemons = () => {
-    setOffset(offset + limit)
-  }
-
   const handleClickFilter = async e => {
     const listOfPokemonsByType = await filterByType(e.target.id);
     setPokemons(listOfPokemonsByType);
@@ -82,7 +78,6 @@ function App() {
             types={types}
             handleClickFilter={handleClickFilter}
             handleChangeInputName={handleChangeInputName}
-            handleClickMorePokemons={handleClickMorePokemons}
           />
         </Route>
         <Route exact path='/:id'>
