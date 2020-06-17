@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const getAllPokemons = async (amount, accomulated) => {
+export const getAllPokemons = async (offset, limit) => {
   try {
     const response = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon-species/?offset=${accomulated}&limit=${amount}`
+      `https://pokeapi.co/api/v2/pokemon-species/?offset=${offset}&limit=${limit}`
     );
     return response.data.results.map(res => {
       return {

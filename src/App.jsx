@@ -15,31 +15,12 @@ function App() {
   const [types, setTypes] = useState([]);
   const [filter, setFilter] = useState('');
   const [limit, setLimit] = useState(50);
-  const [offset, setOffset] = useState(1)
+  const [offset, setOffset] = useState(0)
 
   const fetchFiftyPokemons = async () => {
-    const data = await getAllPokemons(limit, offset);
+    const data = await getAllPokemons(offset, limit);
     setPokemons([...pokemons, ...data]);
   };
-
-  const scroll = () => {
-    window.onscroll = function () {
-      if (document.documentElement.scrollTop > 100) {
-        document.querySelector(".go-top-container").classList.add("show");
-      } else {
-        document.querySelector(".go-top-container").classList.remove("show");
-      }
-    };
-
-    document
-      .querySelector(".go-top-container")
-      .addEventListener("click", function () {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
-  }
 
   const fetchTypes = async () => {
     const typesList = await getAllTypes();
@@ -47,56 +28,53 @@ function App() {
   };
 
   const handleClickMorePokemons = () => {
-    setLimit(limit + 50)
-    setOffset(offset + 50)
+    setOffset(offset + limit)
   }
-
-  useEffect(() => {
-    window.onscroll = function () {
-      if (document.documentElement.scrollTop > 100) {
-        document.querySelector(".go-top-container").classList.add("show");
-      } else {
-        document.querySelector(".go-top-container").classList.remove("show");
-      }
-    };
-
-    document
-      .querySelector(".go-top-container")
-      .addEventListener("click", function () {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
-  }, []);
-
-  useEffect(() => {
-    fetchFiftyPokemons();
-    fetchTypes();
-  }, [limit]);
 
   const handleClickFilter = async e => {
     const listOfPokemonsByType = await filterByType(e.target.id);
     setPokemons(listOfPokemonsByType);
   };
 
-  const handleClickfilterReset = () => {
-    setFilter('');
-    fetchFiftyPokemons();
-  };
-
   const handleChangeInputName = throttle(e => {
     setFilter(e.target.value || '');
-  }, 1000);
+  }, 0);
 
   const filteredPokemons = useMemo(() => filterByName(filter, pokemons), [
     pokemons,
     filter
   ]);
 
+  useEffect(() => {
+    fetchFiftyPokemons();
+    fetchTypes();
+  }, [offset]);
+
+  useEffect(() => {
+    window.onscroll = function () {
+      if (document.querySelector(".go-top-container") === null) {
+        return
+      } else {
+        if (document.documentElement.scrollTop > 100) {
+          document.querySelector(".go-top-container").classList.add("show");
+        } else {
+          document.querySelector(".go-top-container").classList.remove("show");
+        }
+      };
+      document
+        .querySelector(".go-top-container")
+        .addEventListener("click", function () {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+    }
+  }, []);
+
   return (
     <Router>
-      <Header handleClickfilterReset={handleClickfilterReset} />
+      <Header />
       <Switch>
         <Route exact path='/'>
           <PokedexHome
